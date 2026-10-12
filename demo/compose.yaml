@@ -1,0 +1,20 @@
+services:
+  pg:
+    image: postgres:18-alpine
+    # 只设密码，user / database 都用镜像默认的 postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    # PG 18 镜像的 PGDATA 是 /var/lib/postgresql/18/docker，
+    # 挂载点必须是它的父目录 /var/lib/postgresql
+    volumes:
+      - pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pgdata:
