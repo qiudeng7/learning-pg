@@ -28,3 +28,8 @@ curl http://localhost:3000/users/1
 # 删除用户
 curl -X DELETE http://localhost:3000/users/1
 ```
+
+## quickstart
+
+我们在 [quickstart](quickstart.md) 简单聊了pg的访问、webui、配置以及插件。
+
